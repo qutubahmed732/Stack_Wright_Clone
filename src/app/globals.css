@@ -22,3 +22,19 @@
 .animation-delay-4000 {
   animation-delay: 4s;
 }
+
+/* Scrollbar width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Background track */
+::-webkit-scrollbar-track {
+  background: #1f2937; /* dark track */
+}
+
+/* Scrollbar thumb */
+::-webkit-scrollbar-thumb {
+  background: #6b7280;
+  border-radius: 10px;
+}

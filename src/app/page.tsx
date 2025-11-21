@@ -47,6 +47,8 @@ export default function Home() {
   const [active, setActive] = useState<number>(1);
   const [hoverActive, setHoverActive] = useState<number>(1);
   const [activeSlide, setActiveSlide] = useState<number>(1);
+  const [clientStoreis, setClientStories] = useState<number>(1);
+
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -172,6 +174,45 @@ export default function Home() {
       point3: "Ongoing optimization",
       gradient: "from-pink-400 to-rose-500",
       bgGradient: "from-pink-500/10 to-rose-500/10",
+    },
+  ]
+
+  const clientStoriesData = [
+    {
+      id: 1,
+      para: "The difference is night and day. Our new custom site loads 5x faster than our old WordPress site, and our conversion rate increased by 40%. The team's attention to detail and technical expertise is unmatched.",
+      clientAvatar: sarah,
+      clientName: "Sarah Chen",
+      clientRank: "Marketing Director",
+      clientCompany: "TechFlow Solutions",
+      smallPara1: "5x faster",
+      smallPara2: "+40%",
+      smallPara3: "10/10",
+      bgGradient: "from-blue-500 to-cyan-500"
+    },
+    {
+      id: 2,
+      para: "As a technical founder, I was skeptical about outsourcing development. But their code quality and architecture decisions were better than what my internal team could have produced. Truly impressive work.",
+      clientAvatar: Marcus,
+      clientName: "Marcus Rodriguez",
+      clientRank: "CEO & Founder",
+      clientCompany: "InnovateLab",
+      smallPara1: "3x faster",
+      smallPara2: "+60%",
+      smallPara3: "10/10",
+      bgGradient: "from-purple-500 to-pink-500"
+    },
+    {
+      id: 3,
+      para: "They didn't just build us a website—they built us a growth engine. The custom CMS is intuitive, the performance is incredible, and our team can finally focus on business instead of technical issues.",
+      clientAvatar: emily,
+      clientName: "Emily Watson",
+      clientRank: "Product Manager",
+      clientCompany: "GrowthCorp",
+      smallPara1: "4x faster",
+      smallPara2: "+35%",
+      smallPara3: "10/10",
+      bgGradient: "from-emerald-500 to-green-500"
     },
   ]
 
@@ -726,7 +767,7 @@ export default function Home() {
           <div className="hidden lg:block pb-20">
             <div className="relative">
 
-              <div className="absolute top-16 left-0 right-0 h-0.5 bg-linear-to-r from-blue-500/30 via-amber-500/30 via-emerald-500/30 to-pink-500/30"></div>
+              <div className="absolute top-16 left-0 right-0 h-0.5 bg-[linear-gradient(to_right,#3b82f6_0%,#f59e0b_30%,#10b981_60%,#ec4899_100%)]"></div>
 
               <div className="grid grid-cols-4 gap-6">
 
@@ -889,95 +930,98 @@ export default function Home() {
             <p className="text-center text-lg lg:text-xl text-gray-400 font-light max-w-3xl mx-auto leading-relaxed">Don't just take our word for it. Here's what happens when businesses choose custom over templates.</p>
           </div>
 
-          <div className="relative mb-12 lg:mb-16">
-            <div className="bg-gray-800/50 rounded-2xl lg:rounded-3xl shadow-2xl border border-gray-700 overflow-hidden">
-              <div className="flex flex-col lg:grid lg:grid-cols-3 gap-0">
-                <div className="lg:col-span-2 p-6 lg:p-12">
-                  <div className="space-y-6 lg:space-y-8">
-                    <div className="relative">
-                      <Quote className="absolute -top-2 lg:-top-4 -left-1 lg:-left-2 w-8 h-8 lg:w-12 lg:h-12 text-gray-700" />
-                      <blockquote className="text-xl lg:text-2xl xl:text-3xl font-light text-white leading-relaxed pl-6 lg:pl-8">"They didn't just build us a website—they built us a growth engine. The custom CMS is intuitive, the performance is incredible, and our team can finally focus on business instead of technical issues."</blockquote>
-                    </div>
-                    <div className="flex items-center gap-4 lg:gap-6">
+          {clientStoriesData.filter(e => e.id === clientStoreis).map(e => (
+            <div key={e.id} className="relative mb-12 lg:mb-16">
+              <div className="bg-gray-800/50 rounded-2xl lg:rounded-3xl shadow-2xl border border-gray-700 overflow-hidden">
+                <div className="flex flex-col lg:grid lg:grid-cols-3 gap-0">
+                  <div className="lg:col-span-2 p-6 lg:p-12">
+                    <div className="space-y-6 lg:space-y-8">
                       <div className="relative">
-                        <div className="absolute inset-0 bg-linear-to-r from-green-500 to-emerald-500 rounded-full blur-lg opacity-30"></div>
-                        <Image
-                          src={sarah}
-                          alt={"user avatar"}
-                          width={300}
-                          height={300}
-                          className="relative w-12 h-12 lg:w-16 lg:h-16 rounded-full object-cover border-4 border-gray-700 shadow-lg"
-                        />
+                        <Quote className="absolute -top-2 lg:-top-4 -left-1 lg:-left-2 w-8 h-8 lg:w-12 lg:h-12 text-gray-700" />
+                        <blockquote className="text-xl lg:text-2xl xl:text-3xl font-light text-white leading-relaxed pl-6 lg:pl-8">"{e.para}"</blockquote>
                       </div>
-                      <div>
-                        <div className="font-medium text-white text-lg lg:text-xl">Sarah Chen</div>
-                        <div className="text-gray-400 text-sm lg:text-base">Marketing Director</div>
-                        <div className="text-gray-500 text-xs lg:text-sm">TechFlow Solutions</div>
+                      <div className="flex items-center gap-4 lg:gap-6">
+                        <div className="relative">
+                          <div className={`absolute inset-0 bg-linear-to-r ${e.bgGradient} rounded-full blur-lg opacity-30`}></div>
+                          <Image
+                            src={e.clientAvatar}
+                            alt={"user avatar"}
+                            width={300}
+                            height={300}
+                            className="relative w-12 h-12 lg:w-16 lg:h-16 rounded-full object-cover border-4 border-gray-700 shadow-lg"
+                          />
+                        </div>
+                        <div>
+                          <div className="font-medium text-white text-lg lg:text-xl">{e.clientName}</div>
+                          <div className="text-gray-400 text-sm lg:text-base">{e.clientCompany}</div>
+                          <div className="text-gray-500 text-xs lg:text-sm">{e.clientRank}</div>
+                        </div>
                       </div>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Star className="w-5 h-5 lg:w-6 lg:h-6 text-yellow-400 fill-current" />
-                      <Star className="w-5 h-5 lg:w-6 lg:h-6 text-yellow-400 fill-current" />
-                      <Star className="w-5 h-5 lg:w-6 lg:h-6 text-yellow-400 fill-current" />
-                      <Star className="w-5 h-5 lg:w-6 lg:h-6 text-yellow-400 fill-current" />
-                      <Star className="w-5 h-5 lg:w-6 lg:h-6 text-yellow-400 fill-current" />
-                      <span className="ml-2 text-gray-400 font-medium text-sm lg:text-base">5.0 out of 5</span>
+                      <div className="flex items-center gap-2">
+                        <Star className="w-5 h-5 lg:w-6 lg:h-6 text-yellow-400 fill-current" />
+                        <Star className="w-5 h-5 lg:w-6 lg:h-6 text-yellow-400 fill-current" />
+                        <Star className="w-5 h-5 lg:w-6 lg:h-6 text-yellow-400 fill-current" />
+                        <Star className="w-5 h-5 lg:w-6 lg:h-6 text-yellow-400 fill-current" />
+                        <Star className="w-5 h-5 lg:w-6 lg:h-6 text-yellow-400 fill-current" />
+                        <span className="ml-2 text-gray-400 font-medium text-sm lg:text-base">5.0 out of 5</span>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className="bg-linear-to-br from-blue-500 to-cyan-500 p-6 lg:p-12 text-white">
-                  <div className="space-y-6 lg:space-y-8">
-                    <h3 className="text-xl lg:text-2xl font-medium">Project Results</h3>
-                    <div className="space-y-4 lg:space-y-6">
-                      <div className="flex items-center gap-3 lg:gap-4">
-                        <div className="w-10 h-10 lg:w-12 lg:h-12 bg-white/20 rounded-xl flex items-center justify-center">
-                          <Zap className="w-5 h-5 lg:w-6 lg:h-6" />
+                  <div className={`bg-linear-to-br ${e.bgGradient} p-6 lg:p-12 text-white`}>
+                    <div className="space-y-6 lg:space-y-8">
+                      <h3 className="text-xl lg:text-2xl font-medium">Project Results</h3>
+                      <div className="space-y-4 lg:space-y-6">
+                        <div className="flex items-center gap-3 lg:gap-4">
+                          <div className="w-10 h-10 lg:w-12 lg:h-12 bg-white/20 rounded-xl flex items-center justify-center">
+                            <Zap className="w-5 h-5 lg:w-6 lg:h-6" />
+                          </div>
+                          <div>
+                            <div className="text-2xl lg:text-3xl font-light">{e.smallPara1}</div>
+                            <div className="text-white/80 text-sm lg:text-base">Loading Speed</div>
+                          </div>
                         </div>
-                        <div>
-                          <div className="text-2xl lg:text-3xl font-light">5x faster</div>
-                          <div className="text-white/80 text-sm lg:text-base">Loading Speed</div>
+                        <div className="flex items-center gap-3 lg:gap-4">
+                          <div className="w-10 h-10 lg:w-12 lg:h-12 bg-white/20 rounded-xl flex items-center justify-center">
+                            <TrendingUp className="w-5 h-5 lg:w-6 lg:h-6" />
+                          </div>
+                          <div>
+                            <div className="text-2xl lg:text-3xl font-light">{e.smallPara2}</div>
+                            <div className="text-white/80 text-sm lg:text-base">Conversion Rate</div>
+                          </div>
                         </div>
-                      </div>
-                      <div className="flex items-center gap-3 lg:gap-4">
-                        <div className="w-10 h-10 lg:w-12 lg:h-12 bg-white/20 rounded-xl flex items-center justify-center">
-                          <TrendingUp className="w-5 h-5 lg:w-6 lg:h-6" />
-                        </div>
-                        <div>
-                          <div className="text-2xl lg:text-3xl font-light">+40%</div>
-                          <div className="text-white/80 text-sm lg:text-base">Conversion Rate</div>
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-3 lg:gap-4">
-                        <div className="w-10 h-10 lg:w-12 lg:h-12 bg-white/20 rounded-xl flex items-center justify-center">
-                          <Users className="w-5 h-5 lg:w-6 lg:h-6" />
-                        </div>
-                        <div>
-                          <div className="text-2xl lg:text-3xl font-light">10/10</div>
-                          <div className="text-white/80 text-sm lg:text-base">Client Satisfaction</div>
+                        <div className="flex items-center gap-3 lg:gap-4">
+                          <div className="w-10 h-10 lg:w-12 lg:h-12 bg-white/20 rounded-xl flex items-center justify-center">
+                            <Users className="w-5 h-5 lg:w-6 lg:h-6" />
+                          </div>
+                          <div>
+                            <div className="text-2xl lg:text-3xl font-light">{e.smallPara3}</div>
+                            <div className="text-white/80 text-sm lg:text-base">Client Satisfaction</div>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="flex items-center justify-center gap-4 lg:gap-6 mt-6 lg:mt-8">
-              <button className="w-10 h-10 lg:w-12 lg:h-12 bg-gray-800 border border-gray-700 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:border-gray-600 transition-all duration-200 shadow-sm hover:shadow-md">
-                <ChevronLeft className="w-5 h-5 lg:w-6 lg:h-6" />
-              </button>
-              <div className="flex gap-2 lg:gap-3">
-                <button className="w-2 h-2 lg:w-3 lg:h-3 rounded-full transition-all duration-200 bg-white scale-125"></button>
-                <button className="w-2 h-2 lg:w-3 lg:h-3 rounded-full transition-all duration-200 bg-gray-600 hover:bg-gray-500"></button>
-                <button className="w-2 h-2 lg:w-3 lg:h-3 rounded-full transition-all duration-200 bg-gray-600 hover:bg-gray-500"></button>
+              <div className="flex items-center justify-center gap-4 lg:gap-6 mt-6 lg:mt-8">
+                <button onClick={() => setClientStories((prev) => prev === 1 ? 3 : --prev)} className="w-10 h-10 lg:w-12 lg:h-12 bg-gray-800 border border-gray-700 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:border-gray-600 transition-all duration-200 shadow-sm hover:shadow-md">
+                  <ChevronLeft className="w-5 h-5 lg:w-6 lg:h-6" />
+                </button>
+                <div className="flex gap-2 lg:gap-3">
+                  <button onClick={() => setClientStories(1)} className={`w-2 h-2 lg:w-3 lg:h-3 rounded-full transition-all duration-200 ${clientStoreis === 1 ? "bg-white scale-125" : "bg-gray-600 hover:bg-gray-500"}`}></button>
+                  <button onClick={() => setClientStories(2)} className={`w-2 h-2 lg:w-3 lg:h-3 rounded-full transition-all duration-200 ${clientStoreis === 2 ? "bg-white scale-125" : "bg-gray-600 hover:bg-gray-500"}`}></button>
+                  <button onClick={() => setClientStories(3)} className={`w-2 h-2 lg:w-3 lg:h-3 rounded-full transition-all duration-200 ${clientStoreis === 3 ? "bg-white scale-125" : "bg-gray-600 hover:bg-gray-500"}`}></button>
+                </div>
+                <button onClick={() => setClientStories((prev) => prev === 3 ? 1 : ++prev)} className="w-10 h-10 lg:w-12 lg:h-12 bg-gray-800 border border-gray-700 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:border-gray-600 transition-all duration-200 shadow-sm hover:shadow-md">
+                  <ChevronRight className="w-5 h-5 lg:w-6 lg:h-6" />
+                </button>
               </div>
-              <button className="w-10 h-10 lg:w-12 lg:h-12 bg-gray-800 border border-gray-700 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:border-gray-600 transition-all duration-200 shadow-sm hover:shadow-md">
-                <ChevronRight className="w-5 h-5 lg:w-6 lg:h-6" />
-              </button>
             </div>
-          </div>
+          ))}
+
 
           <div className="hidden lg:grid md:grid-cols-3 gap-8">
-            <button className="text-left p-6 rounded-2xl border-2 transition-all duration-300 border-gray-700 bg-gray-800/30 hover:border-gray-600 hover:shadow-md">
+            <button onClick={() => setClientStories(1)} className={`text-left p-6 rounded-2xl border-2 transition-all duration-300 ${clientStoreis === 1 ? "border-gray-600 bg-gray-800/50 scale-105" : "border-gray-700 bg-gray-800/30 hover:border-gray-600 hover:shadow-md"}`}>
               <div className="flex items-center gap-4 mb-4">
                 <Image
                   src={sarah}
@@ -1000,7 +1044,7 @@ export default function Home() {
               </div>
               <p className="text-gray-300 text-sm leading-relaxed line-clamp-3">"The difference is night and day. Our new custom site loads 5x faster than our old WordPress site, and our conversion rate increased by 40%. The team's attention to detail and technical expertise is unmatched."</p>
             </button>
-            <button className="text-left p-6 rounded-2xl border-2 transition-all duration-300 border-gray-700 bg-gray-800/30 hover:border-gray-600 hover:shadow-md">
+            <button onClick={() => setClientStories(2)} className={`text-left p-6 rounded-2xl border-2 transition-all duration-300 ${clientStoreis === 2 ? "border-gray-600 bg-gray-800/50 scale-105" : "border-gray-700 bg-gray-800/30 hover:border-gray-600 hover:shadow-md"}`}>
               <div className="flex items-center gap-4 mb-4">
                 <Image
                   src={Marcus}
@@ -1023,9 +1067,9 @@ export default function Home() {
                   <Star className="w-4 h-4 text-yellow-400 fill-current" />
                 </div>
               </div>
-              <p className="text-gray-300 text-sm leading-relaxed line-clamp-3">"As a technical founder, I was skeptical about outsourcing development. But their code quality and architecture decisions were better than what my internal team could have produced. Truly impressive work."</p>
+              <p className="text-gray-300 text-sm leading-relaxed line-clamp-3">"As a technical founder, I was skeptical about outsourcing development. But their code quality and architecture decisions were better than what my...</p>
             </button>
-            <button className="text-left p-6 rounded-2xl border-2 transition-all duration-300 border-gray-700 bg-gray-800/30 hover:border-gray-600 hover:shadow-md">
+            <button onClick={() => setClientStories(3)} className={`text-left p-6 rounded-2xl border-2 transition-all duration-300 ${clientStoreis === 3 ? "border-gray-600 bg-gray-800/50 scale-105" : "border-gray-700 bg-gray-800/30 hover:border-gray-600 hover:shadow-md"}`}>
               <div className="flex items-center gap-4 mb-4">
                 <Image
                   src={emily}
@@ -1046,7 +1090,7 @@ export default function Home() {
                 <Star className="w-4 h-4 text-yellow-400 fill-current" />
                 <Star className="w-4 h-4 text-yellow-400 fill-current" />
               </div>
-              <p className="text-gray-300 text-sm leading-relaxed line-clamp-3">"They didn't just build us a website—they built us a growth engine. The custom CMS is intuitive, the performance is incredible, and our team can finally focus on business instead of technical issues."</p>
+              <p className="text-gray-300 text-sm leading-relaxed line-clamp-3">"They didn't just build us a website—they built us a growth engine. The custom CMS is intuitive, the performance is incredible, and our team can finally...</p>
             </button>
           </div>
         </div>
@@ -1226,19 +1270,20 @@ export default function Home() {
                 </div>
                 <div className="space-y-8 text-center lg:text-left">
                   <h4 className="text-2xl font-light text-white">Get In Touch</h4>
-                  <div className="space-y-6">
-                    <Link href="mailto:hello@stackwright.com" className="flex items-center gap-4 text-gray-400 hover:text-white transition-colors duration-200 group justify-center lg:justify-start">
+                  <div className="space-y-6 grid grid-rows-3 items-start justify-center md:justify-start">
+                    <Link href="mailto:hello@stackwright.com" className="flex items-center gap-4 text-gray-400 hover:text-white transition-colors duration-200 group justify-start">
                       <div className="w-10 h-10 bg-gray-900 rounded-lg flex items-center justify-center border border-gray-800 group-hover:border-gray-700 transition-colors duration-200">
                         <Mail className="w-5 h-5" />
                       </div>
                       <span className="font-light text-lg">hello@stackwright.com</span>
                     </Link>
-                    <Link href="tel:+15551234567" className="flex items-center gap-4 text-gray-400 hover:text-white transition-colors duration-200 group justify-center lg:justify-start">
+                    <Link href="tel:+15551234567" className="flex items-center gap-4 text-gray-400 hover:text-white transition-colors duration-200 group justify-start">
                       <div className="w-10 h-10 bg-gray-900 rounded-lg flex items-center justify-center border border-gray-800 group-hover:border-gray-700 transition-colors duration-200">
                         <Phone className="w-5 h-5" />
                       </div>
-                      <span className="font-light text-lg">+1 (555) 123-4567</span></Link>
-                    <Link href="#" className="flex items-center gap-4 text-gray-400 hover:text-white transition-colors duration-200 group justify-center lg:justify-start">
+                      <span className="font-light text-lg">+1 (555) 123-4567</span>
+                    </Link>
+                    <Link href="#" className="flex items-center gap-4 text-gray-400 hover:text-white transition-colors duration-200 group justify-start">
                       <div className="w-10 h-10 bg-gray-900 rounded-lg flex items-center justify-center border border-gray-800 group-hover:border-gray-700 transition-colors duration-200">
                         <MapPin className="w-5 h-5" />
                       </div>
@@ -1255,9 +1300,9 @@ export default function Home() {
                 <p>© 2025 Stackwright. All rights reserved.</p>
               </div>
               <div className="flex items-center gap-8 text-gray-400 font-light">
-                <a href="#" className="hover:text-white transition-colors duration-200">Privacy Policy</a>
-                <a href="#" className="hover:text-white transition-colors duration-200">Terms of Service</a>
-                <button className="w-10 h-10 bg-gray-900 hover:bg-gray-800 rounded-lg flex items-center justify-center text-gray-400 hover:text-white transition-all duration-200 border border-gray-800 hover:border-gray-700 ml-4" aria-label="Scroll to top">
+                <Link href="#" className="hover:text-white transition-colors duration-200">Privacy Policy</Link>
+                <Link href="#" className="hover:text-white transition-colors duration-200">Terms of Service</Link>
+                <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="w-10 h-10 bg-gray-900 hover:bg-gray-800 rounded-lg flex items-center justify-center text-gray-400 hover:text-white transition-all duration-200 border border-gray-800 hover:border-gray-700 ml-4" aria-label="Scroll to top">
                   <ArrowUp className="w-4 h-4" />
                 </button>
               </div>
